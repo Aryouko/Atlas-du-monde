@@ -11,8 +11,8 @@ export default function Langues()  {
         const fetchLangues = async () => {
             try {
                 const res = await fetch('http://localhost:3005/langues?continent=' + stateContinent.toLowerCase());
-                const donnee = await res.json();
-                setStateLangues(donnee);
+                const donnees = await res.json();
+                setStateLangues(donnees);
             } catch (error) {
                 console.error("Erreur lors de l'appel des langues", error);
             }
@@ -26,10 +26,8 @@ export default function Langues()  {
     const Reponse = () => {
         if (stateContinent === "") {
             return "Choisissez un continent dans la liste déroulante pour voir toutes les langues officielles qu'on y parle!";
-        } else if (stateLangues.length !== 0) {
-            return "Les langues parlées en " + stateContinent + " sont :" + stateLangues.map(item  => {
-                return " " +item;
-            });
+        } else {
+            return "Les langues parlées en " + stateContinent + " sont :" + stateLangues.map(langue => " " + langue);
         }
     };
 
@@ -40,12 +38,12 @@ export default function Langues()  {
                 value={stateContinent}
                 onChange={(e) => setStateContinent(e.target.value)}
             >
-                <option value="">Tous les continents</option>
-                <option value="Europe">Europe</option>
+                <option value="" selected>Choisissez un continent</option>
                 <option value="Afrique">Afrique</option>
-                <option value="Asie">Asie</option>
                 <option value="Amérique du Nord">Amérique du Nord</option>
                 <option value="Amérique du Sud">Amérique du Sud</option>
+                <option value="Asie">Asie</option>
+                <option value="Europe">Europe</option>
                 <option value="Océanie">Océanie</option>
             </Form.Select>
             <p>{Reponse()}</p>

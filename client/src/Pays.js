@@ -17,9 +17,9 @@ export default function Pays()  {
         const fetchPays = async () => {
             try {
                 const res = await fetch('http://localhost:3005/pays');
-                const donnee = await res.json();
-                setStatePays(donnee);
-                setStatePaysFiltre(donnee);
+                const donnees = await res.json();
+                setStatePays(donnees);
+                setStatePaysFiltre(donnees);
             } catch (error) {
                 console.error("Erreur lors de l'appel des pays", error);
             }
@@ -65,12 +65,12 @@ export default function Pays()  {
                         value={stateContinent}
                         onChange={(e) => setStateContinent(e.target.value)}
                     >
-                        <option value="">Tous les continents</option>
-                        <option value="Europe">Europe</option>
+                        <option value="" selected>Tous les continents</option>
                         <option value="Afrique">Afrique</option>
-                        <option value="Asie">Asie</option>
                         <option value="Amérique du Nord">Amérique du Nord</option>
                         <option value="Amérique du Sud">Amérique du Sud</option>
+                        <option value="Asie">Asie</option>
+                        <option value="Europe">Europe</option>
                         <option value="Océanie">Océanie</option>
                     </Form.Select>
                 </Col>
@@ -79,7 +79,7 @@ export default function Pays()  {
                         value={stateTri}
                         onChange={(e) => setStateTri(e.target.value)}
                     >
-                        <option value="Alphabétique">Trier par ordre alphabétique</option>
+                        <option value="Alphabétique" selected>Trier par ordre alphabétique</option>
                         <option value="Population">Trier par population</option>
                     </Form.Select>
                 </Col>

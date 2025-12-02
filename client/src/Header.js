@@ -12,7 +12,6 @@ export default function Header() {
             <small className="fw-light">Par Carré Lucien</small>
             </div>
         </Link>
-
         <ul className="navbar-nav ms-auto">
           <li className="nav-item">
             <Link className="nav-link text-white" to="/pays">Pays</Link>
